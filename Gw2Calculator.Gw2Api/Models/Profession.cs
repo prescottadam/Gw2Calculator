@@ -10,6 +10,6 @@
         public object Weapons;
         public object Training;
         public object Flags;
-        public Skill[] Skills;
+        public SkillReference[] Skills;
     }
 }

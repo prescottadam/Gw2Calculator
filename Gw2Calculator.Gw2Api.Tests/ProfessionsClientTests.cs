@@ -16,7 +16,7 @@ namespace Gw2Calculator.Gw2Api.Tests
         }
 
         [Test]
-        public async Task GetProfessions_ReturnsListOfProfessions()
+        public async Task GetProfessionsAsync_ReturnsListOfProfessions()
         {
             // Arrange
 
@@ -29,7 +29,7 @@ namespace Gw2Calculator.Gw2Api.Tests
         }
 
         [Test]
-        public async Task GetSkills_ReturnsListOfSkills()
+        public async Task GetSkillsAsync_ReturnsListOfSkills()
         {
             // Arrange
             const string profession = "Ranger";
