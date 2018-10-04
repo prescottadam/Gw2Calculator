@@ -7,13 +7,12 @@ namespace Gw2Calculator.Gw2Api.Tests
     [TestFixture]
     public class ProfessionsClientTests
     {
-        private const string _apiKey = "";
         private ProfessionsClient _target;
 
         [SetUp]
         public void SetUp()
         {
-            _target = new ProfessionsClient(_apiKey);
+            _target = new ProfessionsClient();
         }
 
         [Test]

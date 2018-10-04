@@ -7,19 +7,15 @@ namespace Gw2Calculator.Gw2Api
 {
     public abstract class ApiClientBase
     {
+        private const string _apiKey = "";
         private const string _baseUrl = "https://api.guildwars2.com";
-
-        private readonly string _apiKey;
         
-        public ApiClientBase(string apiKey)
-        {
-            _apiKey = apiKey;
-        }
-
         private HttpClient CreateClient()
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(_baseUrl);
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(_baseUrl)
+            };
             client.DefaultRequestHeaders.Clear();
             return client;
         }

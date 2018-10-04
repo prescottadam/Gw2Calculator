@@ -7,7 +7,7 @@ namespace Gw2Calculator.Gw2Api
 {
     public class ProfessionsClient : ApiClientBase, IProfessionsClient
     {
-        public ProfessionsClient(string apiKey) : base(apiKey)
+        public ProfessionsClient()
         {
         }
 
