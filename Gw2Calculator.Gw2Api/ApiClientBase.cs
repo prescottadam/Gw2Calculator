@@ -1,0 +1,41 @@
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace Gw2Calculator.Gw2Api
+{
+    public abstract class ApiClientBase
+    {
+        private const string _baseUrl = "https://api.guildwars2.com";
+
+        private readonly string _apiKey;
+        
+        public ApiClientBase(string apiKey)
+        {
+            _apiKey = apiKey;
+        }
+
+        private HttpClient CreateClient()
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseUrl);
+            client.DefaultRequestHeaders.Clear();
+            return client;
+        }
+
+        protected async Task<T> GetAsync<T>(string requestUri)
+        {
+            using (var client = CreateClient())
+            {
+                var response = await client.GetAsync($"{requestUri}?access_token={_apiKey}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(content);
+                }
+                return default(T);
+            }
+        }
+    }
+}
