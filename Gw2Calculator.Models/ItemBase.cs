@@ -7,8 +7,6 @@ namespace Gw2Calculator.Models
 {
     public abstract class ItemBase
     {
-        protected abstract int AttributePoints { get; }
-
         public int Power { get; set; }
         public int Precision { get; set; }
         public int Toughness { get; set; }
@@ -19,18 +17,20 @@ namespace Gw2Calculator.Models
         public int Ferocity { get; set; }
         public int HealingPower { get; set; }
 
-        public ItemBase(IEnumerable<AttributeMultiplier> attributeMultipliers)
+        public ItemBase(IEnumerable<AttributeMultiplier> multipliers)
         {
-            foreach (var attributeMultiplier in attributeMultipliers)
-            {
-                var property = 
-                    GetType()
-                        .GetProperty(attributeMultiplier.Attribute)
-                        .GetSetMethod();
+            CalculateAttributeValues(multipliers);
+        }
 
-                var value = (int)Math.Round(AttributePoints * attributeMultiplier.Value, MidpointRounding.ToEven);
-                property.Invoke(this, new object[] { value });
-            }
+        protected abstract void CalculateAttributeValues(IEnumerable<AttributeMultiplier> multipliers);
+
+        protected void SetAttributeValue(string attributeName, int value)
+        {
+            var property =
+                GetType()
+                    .GetProperty(attributeName)
+                    .GetSetMethod();
+            property.Invoke(this, new object[] { value });
         }
     }
 }

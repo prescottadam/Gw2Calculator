@@ -2,11 +2,11 @@
 
 namespace Gw2Calculator.Models
 {
-    public class LegsArmor : ItemBase
+    public class LegArmor : ArmorBase
     {
         protected override int AttributePoints => 269;
 
-        public LegsArmor(IEnumerable<AttributeMultiplier> attributeMultipliers) : base(attributeMultipliers)
+        public LegArmor(IEnumerable<AttributeMultiplier> multipliers) : base(multipliers)
         {
         }
     }
