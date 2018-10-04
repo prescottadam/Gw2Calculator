@@ -2,11 +2,11 @@
 
 namespace Gw2Calculator.Models
 {
-    public class FeetArmor : ItemBase
+    public class FeetArmor : ArmorBase
     {
         protected override int AttributePoints => 135;
 
-        public FeetArmor(IEnumerable<AttributeMultiplier> attributeMultipliers) : base(attributeMultipliers)
+        public FeetArmor(IEnumerable<AttributeMultiplier> multipliers) : base(multipliers)
         {
         }
     }

@@ -4,10 +4,10 @@ using NUnit.Framework;
 namespace Gw2Calculator.Models.Tests
 {
     [TestFixture]
-    public class LegsArmorTests
+    public class AmuletTests
     {
         [Test]
-        public void BerserkersLegs_HasExpectedValues()
+        public void BerserkersAmulet_HasExpectedValues()
         {
             // Arrange
             var multipliers = new List<AttributeMultiplier>
@@ -18,19 +18,19 @@ namespace Gw2Calculator.Models.Tests
             };
 
             // Act
-            var actual = new LegsArmor(multipliers);
+            var actual = new Amulet(multipliers);
 
             // Assert
-            const int expectedPower = 94;
-            const int expectedPrecision = 67;
-            const int expectedFerocity = 67;
+            const int expectedPower = 157;
+            const int expectedPrecision = 108;
+            const int expectedFerocity = 108;
             Assert.AreEqual(expectedPower, actual.Power);
             Assert.AreEqual(expectedPrecision, actual.Precision);
             Assert.AreEqual(expectedFerocity, actual.Ferocity);
         }
 
         [Test]
-        public void VipersLegs_HasExpectedValues()
+        public void VipersAmulet_HasExpectedValues()
         {
             // Arrange
             var multipliers = new List<AttributeMultiplier>
@@ -42,13 +42,13 @@ namespace Gw2Calculator.Models.Tests
             };
 
             // Act
-            var actual = new LegsArmor(multipliers);
+            var actual = new Amulet(multipliers);
 
             // Assert
-            const int expectedPower = 81;
-            const int expectedConditionDamage = 81;
-            const int expectedPrecision = 44;
-            const int expectedExpertise = 44;
+            const int expectedPower = 133;
+            const int expectedConditionDamage = 133;
+            const int expectedPrecision = 71;
+            const int expectedExpertise = 71;
             Assert.AreEqual(expectedPower, actual.Power);
             Assert.AreEqual(expectedConditionDamage, actual.ConditionDamage);
             Assert.AreEqual(expectedPrecision, actual.Precision);

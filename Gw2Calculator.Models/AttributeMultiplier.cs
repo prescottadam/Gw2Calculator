@@ -2,13 +2,13 @@
 {
     public class AttributeMultiplier
     {
-        public string Attribute;
+        public string AttributeName;
         public decimal Value;
 
-        public AttributeMultiplier(string attribute, decimal multiplier)
+        public AttributeMultiplier(string attributeName, decimal value)
         {
-            Attribute = attribute;
-            Value = multiplier;
+            AttributeName = attributeName;
+            Value = value;
         }
     }
 }

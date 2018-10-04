@@ -4,10 +4,10 @@ using NUnit.Framework;
 namespace Gw2Calculator.Models.Tests
 {
     [TestFixture]
-    public class ShoulderArmorTests
+    public class HandArmorTests
     {
         [Test]
-        public void BerserkersShoulders_HasExpectedValues()
+        public void BerserkersHands_HasExpectedValues()
         {
             // Arrange
             var multipliers = new List<AttributeMultiplier>
@@ -18,7 +18,7 @@ namespace Gw2Calculator.Models.Tests
             };
 
             // Act
-            var actual = new ShoulderArmor(multipliers);
+            var actual = new HandArmor(multipliers);
 
             // Assert
             const int expectedPower = 47;
@@ -30,7 +30,7 @@ namespace Gw2Calculator.Models.Tests
         }
 
         [Test]
-        public void VipersShoulders_HasExpectedValues()
+        public void VipersHands_HasExpectedValues()
         {
             // Arrange
             var multipliers = new List<AttributeMultiplier>
@@ -42,7 +42,7 @@ namespace Gw2Calculator.Models.Tests
             };
 
             // Act
-            var actual = new ShoulderArmor(multipliers);
+            var actual = new HandArmor(multipliers);
 
             // Assert
             const int expectedPower = 40;

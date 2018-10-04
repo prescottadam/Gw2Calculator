@@ -2,11 +2,11 @@
 
 namespace Gw2Calculator.Models
 {
-    public class ChestArmor : ItemBase
+    public class ChestArmor : ArmorBase
     {
         protected override int AttributePoints => 404;
 
-        public ChestArmor(IEnumerable<AttributeMultiplier> attributeMultipliers) : base(attributeMultipliers)
+        public ChestArmor(IEnumerable<AttributeMultiplier> multipliers) : base(multipliers)
         {
         }
     }
