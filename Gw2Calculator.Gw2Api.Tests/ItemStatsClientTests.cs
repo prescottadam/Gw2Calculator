@@ -24,10 +24,6 @@ namespace Gw2Calculator.Gw2Api.Tests
             var actual = await _target.GetItemStatsAsync();
 
             // Assert
-            var berserkers = actual.First(x => x.Name == "Berserker's");
-            var vipers = actual.First(x => x.Name == "Viper's");
-            var celestial = actual.First(x => x.Name == "Celestial");
-
             Assert.IsTrue(actual.Any(x => x.Name == "Berserker's"));
             Assert.IsTrue(actual.Any(x => x.Name == "Viper's"));
         }
