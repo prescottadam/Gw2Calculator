@@ -6,9 +6,6 @@ namespace Gw2Calculator.Models.Tests
     [TestFixture]
     public class HeadArmorTests
     {
-
-        // 35/25/25    .3/.165    .165
-
         [Test]
         public void BerserkersHead_HasExpectedValues()
         {
