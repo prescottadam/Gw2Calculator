@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Gw2Calculator.Gw2Api.Models;
+using Newtonsoft.Json.Linq;
 
 namespace Gw2Calculator.Gw2Api
 {
@@ -18,15 +19,27 @@ namespace Gw2Calculator.Gw2Api
         {
         }
 
-        public Task<IEnumerable<string>> GetProfessionsAsync()
+        public async Task<IEnumerable<string>> GetProfessionsAsync()
         {
-            return GetAsync<IEnumerable<string>>(ApiEndpoints.Professions);
+            var response = await GetAsync<JArray>(ApiEndpoints.Professions);
+            var professions = response.Children();
+            return response.Values<string>().ToArray();
         }
 
         public async Task<IEnumerable<SkillReference>> GetSkillsAsync(string professionName)
         {
-            var profession = await GetAsync<Profession>(ApiEndpoints.Profession(professionName));
-            return profession.Skills.ToList();
+            var response = await GetAsync<JObject>(ApiEndpoints.Profession(professionName));
+            var skills = response["skills"];
+            return 
+                skills
+                    .Children<JObject>()
+                    .Select(x => new SkillReference
+                    {
+                        Id = x.Value<string>("id"),
+                        Slot = x.Value<string>("slot"),
+                        Type = x.Value<string>("type")
+                    })
+                    .ToArray();
         }
     }
 }
