@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Gw2Calculator.Gw2Api
 {
@@ -20,7 +21,7 @@ namespace Gw2Calculator.Gw2Api
             return client;
         }
 
-        protected async Task<T> GetAsync<T>(string requestUri)
+        protected async Task<T> GetAsync<T>(string requestUri) where T : JToken
         {
             using (var client = CreateClient())
             {
@@ -30,7 +31,7 @@ namespace Gw2Calculator.Gw2Api
                     var content = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<T>(content);
                 }
-                return default(T);
+                return null;
             }
         }
     }
