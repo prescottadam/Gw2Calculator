@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Gw2Calculator.Models;
 using NUnit.Framework;
 
 namespace Gw2Calculator.Gw2Api.Tests
@@ -38,9 +39,9 @@ namespace Gw2Calculator.Gw2Api.Tests
             var actual = await _target.GetSkillsAsync(profession);
 
             // Assert
-            Assert.IsTrue(actual.Any(x => x.Type == "Heal"));
-            Assert.IsTrue(actual.Any(x => x.Type == "Utility"));
-            Assert.IsTrue(actual.Any(x => x.Type == "Elite"));
+            Assert.IsTrue(actual.Any(x => x.Type == SkillTypeEnum.Heal));
+            Assert.IsTrue(actual.Any(x => x.Type == SkillTypeEnum.Utility));
+            Assert.IsTrue(actual.Any(x => x.Type == SkillTypeEnum.Elite));
         }
     }
 }

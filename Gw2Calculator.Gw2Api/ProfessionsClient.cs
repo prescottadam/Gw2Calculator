@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Gw2Calculator.Gw2Api.Models;
+using Gw2Calculator.Models;
 using Newtonsoft.Json.Linq;
 
 namespace Gw2Calculator.Gw2Api
@@ -10,7 +11,7 @@ namespace Gw2Calculator.Gw2Api
     {
         Task<IEnumerable<string>> GetProfessionsAsync();
 
-        Task<IEnumerable<SkillReference>> GetSkillsAsync(string professionName);
+        Task<IEnumerable<Skill>> GetSkillsAsync(string professionName);
     }
 
     public class ProfessionsClient : ApiClientBase, IProfessionsClient
@@ -26,20 +27,30 @@ namespace Gw2Calculator.Gw2Api
             return response.Values<string>().ToArray();
         }
 
-        public async Task<IEnumerable<SkillReference>> GetSkillsAsync(string professionName)
+        public async Task<IEnumerable<Skill>> GetSkillsAsync(string professionName)
         {
-            var response = await GetAsync<JObject>(ApiEndpoints.Profession(professionName));
-            var skills = response["skills"];
-            return 
-                skills
+            var getProfessionResponse = await GetAsync<JObject>(ApiEndpoints.Profession(professionName));
+            var skillIds =
+                getProfessionResponse["skills"]
                     .Children<JObject>()
-                    .Select(x => new SkillReference
-                    {
-                        Id = x.Value<string>("id"),
-                        Slot = x.Value<string>("slot"),
-                        Type = x.Value<string>("type")
-                    })
+                    .Select(x => x.Value<string>("id"))
                     .ToArray();
+
+            var getSkillsResponse = await GetAsync<JArray>(ApiEndpoints.Skill(skillIds));
+            var skills = 
+                getSkillsResponse
+                    .Children()
+                    .Select(x => new Skill
+                    {
+                        Name = x.Value<string>("name"),
+                        //Facts = x.Value<JArray>("facts"),
+                        Description = x.Value<string>("description"),
+                        Type = Enum.Parse<SkillTypeEnum>(x.Value<string>("type"))
+                    })
+                    .Where(x => x.Type != SkillTypeEnum.Profession)
+                    .ToArray();
+            
+            return skills;
         }
     }
 }

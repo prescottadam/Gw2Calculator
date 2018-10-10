@@ -10,7 +10,7 @@ namespace Gw2Calculator.Models
         protected override int QuadrupleStatMinorAttributePoints => 56;
         protected override int CelestialAttributePoints => 57;
 
-        public Ring(IEnumerable<AttributeMultiplier> multipliers) : base(multipliers)
+        public Ring(IEnumerable<ItemStatAttribute> attributes) : base(attributes)
         {
         }
     }

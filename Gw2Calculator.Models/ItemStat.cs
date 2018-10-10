@@ -1,4 +1,4 @@
-﻿namespace Gw2Calculator.Gw2Api.Models
+﻿namespace Gw2Calculator.Models
 {
     public class ItemStat
     {

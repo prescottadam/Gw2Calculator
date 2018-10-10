@@ -7,16 +7,16 @@ namespace Gw2Calculator.Models
     {
         protected abstract int AttributePoints { get; }
 
-        public ArmorBase(IEnumerable<AttributeMultiplier> multipliers) : base(multipliers)
+        public ArmorBase(IEnumerable<ItemStatAttribute> attributes) : base(attributes)
         {
         }
 
-        protected override void CalculateAttributeValues(IEnumerable<AttributeMultiplier> multipliers)
+        protected override void CalculateAttributeValues(IEnumerable<ItemStatAttribute> attributes)
         {
-            foreach (var multiplier in multipliers)
+            foreach (var attribute in attributes)
             {
-                var value = (int)Math.Round(AttributePoints * multiplier.Value, MidpointRounding.ToEven);
-                SetAttributeValue(multiplier.AttributeName, value);
+                var value = (int)Math.Round(AttributePoints * attribute.Multiplier, MidpointRounding.ToEven);
+                SetAttributeValue(attribute.Name, value);
             }
         }
     }
