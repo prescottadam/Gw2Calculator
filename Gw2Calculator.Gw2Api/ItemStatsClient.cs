@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Gw2Calculator.Gw2Api.Models;
+using Gw2Calculator.Models;
 using Newtonsoft.Json.Linq;
 
 namespace Gw2Calculator.Gw2Api
@@ -31,7 +31,7 @@ namespace Gw2Calculator.Gw2Api
                                 .Children()
                                 .Select(attr => new ItemStatAttribute
                                 {
-                                    Attribute = x.Value<string>("attribute"),
+                                    Name = x.Value<string>("attribute"),
                                     Multiplier = x.Value<decimal>("multiplier"),
                                     Value = x.Value<int>("value")
                                 })

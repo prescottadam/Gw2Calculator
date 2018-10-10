@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Generic;
 
 namespace Gw2Calculator.Models
 {
@@ -17,12 +14,12 @@ namespace Gw2Calculator.Models
         public int Ferocity { get; set; }
         public int HealingPower { get; set; }
 
-        public ItemBase(IEnumerable<AttributeMultiplier> multipliers)
+        public ItemBase(IEnumerable<ItemStatAttribute> attributes)
         {
-            CalculateAttributeValues(multipliers);
+            CalculateAttributeValues(attributes);
         }
 
-        protected abstract void CalculateAttributeValues(IEnumerable<AttributeMultiplier> multipliers);
+        protected abstract void CalculateAttributeValues(IEnumerable<ItemStatAttribute> attributes);
 
         protected void SetAttributeValue(string attributeName, int value)
         {

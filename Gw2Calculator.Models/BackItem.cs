@@ -10,7 +10,7 @@ namespace Gw2Calculator.Models
         protected override int QuadrupleStatMinorAttributePoints => 27;
         protected override int CelestialAttributePoints => 28;
 
-        public BackItem(IEnumerable<AttributeMultiplier> multipliers) : base(multipliers)
+        public BackItem(IEnumerable<ItemStatAttribute> attributes) : base(attributes)
         {
         }
     }

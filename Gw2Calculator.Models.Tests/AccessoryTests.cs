@@ -10,15 +10,15 @@ namespace Gw2Calculator.Models.Tests
         public void BerserkersAccessory_HasExpectedValues()
         {
             // Arrange
-            var multipliers = new List<AttributeMultiplier>
+            var attributes = new List<ItemStatAttribute>
             {
-                new AttributeMultiplier("Power", .35m),
-                new AttributeMultiplier("Precision", .25m),
-                new AttributeMultiplier("Ferocity", .25m)
+                new ItemStatAttribute("Power", .35m),
+                new ItemStatAttribute("Precision", .25m),
+                new ItemStatAttribute("Ferocity", .25m)
             };
 
             // Act
-            var actual = new Accessory(multipliers);
+            var actual = new Accessory(attributes);
 
             // Assert
             const int expectedPower = 110;
@@ -33,16 +33,16 @@ namespace Gw2Calculator.Models.Tests
         public void VipersAccessory_HasExpectedValues()
         {
             // Arrange
-            var multipliers = new List<AttributeMultiplier>
+            var attributes = new List<ItemStatAttribute>
             {
-                new AttributeMultiplier("Power", .3m),
-                new AttributeMultiplier("ConditionDamage", .3m),
-                new AttributeMultiplier("Precision", .165m),
-                new AttributeMultiplier("Expertise", .165m)
+                new ItemStatAttribute("Power", .3m),
+                new ItemStatAttribute("ConditionDamage", .3m),
+                new ItemStatAttribute("Precision", .165m),
+                new ItemStatAttribute("Expertise", .165m)
             };
 
             // Act
-            var actual = new Accessory(multipliers);
+            var actual = new Accessory(attributes);
 
             // Assert
             const int expectedPower = 92;

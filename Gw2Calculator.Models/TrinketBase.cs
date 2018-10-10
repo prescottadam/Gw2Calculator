@@ -11,40 +11,40 @@ namespace Gw2Calculator.Models
         protected abstract int QuadrupleStatMinorAttributePoints { get; }
         protected abstract int CelestialAttributePoints { get; }
 
-        public TrinketBase(IEnumerable<AttributeMultiplier> multipliers) : base(multipliers)
+        public TrinketBase(IEnumerable<ItemStatAttribute> attributes) : base(attributes)
         {
         }
 
-        protected override void CalculateAttributeValues(IEnumerable<AttributeMultiplier> multipliers)
+        protected override void CalculateAttributeValues(IEnumerable<ItemStatAttribute> attributes)
         {
-            var attributeCount = multipliers.Count();
+            var attributeCount = attributes.Count();
             if (attributeCount == 3)
             {
-                foreach (var multiplier in multipliers.OrderByDescending(x => x.Value).Take(1))
+                foreach (var attribute in attributes.OrderByDescending(x => x.Multiplier).Take(1))
                 {
-                    SetAttributeValue(multiplier.AttributeName, TripleStatMajorAttributePoints);
+                    SetAttributeValue(attribute.Name, TripleStatMajorAttributePoints);
                 }
-                foreach (var multiplier in multipliers.OrderBy(x => x.Value).Take(2))
+                foreach (var attribute in attributes.OrderBy(x => x.Multiplier).Take(2))
                 {
-                    SetAttributeValue(multiplier.AttributeName, TripleStatMinorAttributePoints);
+                    SetAttributeValue(attribute.Name, TripleStatMinorAttributePoints);
                 }
             }
             else if (attributeCount == 4)
             {
-                foreach (var multiplier in multipliers.OrderByDescending(x => x.Value).Take(2))
+                foreach (var attribute in attributes.OrderByDescending(x => x.Multiplier).Take(2))
                 {
-                    SetAttributeValue(multiplier.AttributeName, QuadrupleStatMajorAttributePoints);
+                    SetAttributeValue(attribute.Name, QuadrupleStatMajorAttributePoints);
                 }
-                foreach (var multiplier in multipliers.OrderBy(x => x.Value).Take(2))
+                foreach (var attribute in attributes.OrderBy(x => x.Multiplier).Take(2))
                 {
-                    SetAttributeValue(multiplier.AttributeName, QuadrupleStatMinorAttributePoints);
+                    SetAttributeValue(attribute.Name, QuadrupleStatMinorAttributePoints);
                 }
             }
             else if (attributeCount == 7)
             {
-                foreach (var multiplier in multipliers)
+                foreach (var attribute in attributes)
                 {
-                    SetAttributeValue(multiplier.AttributeName, CelestialAttributePoints);
+                    SetAttributeValue(attribute.Name, CelestialAttributePoints);
                 }
             }
         }
