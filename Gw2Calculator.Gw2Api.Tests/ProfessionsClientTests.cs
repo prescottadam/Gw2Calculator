@@ -30,10 +30,18 @@ namespace Gw2Calculator.Gw2Api.Tests
         }
 
         [Test]
-        public async Task GetSkillsAsync_ReturnsListOfSkills()
+        [TestCase("Elementalist")]
+        [TestCase("Engineer")]
+        [TestCase("Guardian")]
+        [TestCase("Mesmer")]
+        [TestCase("Necromancer")]
+        [TestCase("Ranger")]
+        [TestCase("Revenant")]
+        [TestCase("Thief")]
+        [TestCase("Warrior")]
+        public async Task GetSkillsAsync_ReturnsListOfSkills(string profession)
         {
             // Arrange
-            const string profession = "Ranger";
 
             // Act
             var actual = await _target.GetSkillsAsync(profession);
