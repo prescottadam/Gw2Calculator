@@ -2,8 +2,8 @@
 {
     public class ItemStat
     {
-        public string Id;
-        public string Name;
-        public ItemStatAttribute[] Attributes;
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public ItemStatAttribute[] Attributes { get; set; }
     }
 }

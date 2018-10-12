@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Gw2Calculator.Models;
+using Gw2Calculator.Models.SkillFacts;
 using Newtonsoft.Json.Linq;
 
 namespace Gw2Calculator.Gw2Api
@@ -16,8 +17,11 @@ namespace Gw2Calculator.Gw2Api
 
     public class ProfessionsClient : ApiClientBase, IProfessionsClient
     {
+        private readonly SkillFactFactory _skillFactFactory;
+
         public ProfessionsClient()
         {
+            _skillFactFactory = new SkillFactFactory();
         }
 
         public async Task<IEnumerable<string>> GetProfessionsAsync()
@@ -43,14 +47,22 @@ namespace Gw2Calculator.Gw2Api
                     .Select(x => new Skill
                     {
                         Name = x.Value<string>("name"),
-                        //Facts = x.Value<JArray>("facts"),
+                        Facts = ParseSkillFacts(x.Value<JArray>("facts")),
                         Description = x.Value<string>("description"),
                         Type = Enum.Parse<SkillTypeEnum>(x.Value<string>("type"))
                     })
-                    .Where(x => x.Type != SkillTypeEnum.Profession)
                     .ToArray();
             
             return skills;
+        }
+
+        private IEnumerable<ISkillFact> ParseSkillFacts(JArray facts)
+        {
+            return 
+                facts?
+                    .Children()
+                    .Select(x => _skillFactFactory.CreateFact(x))
+                    .ToArray();
         }
     }
 }
